@@ -4,14 +4,14 @@
     <div class="login-wrap">
       <div class="content">
         <label class="lab">用户名：</label>
-        <input type="text">
+        <input id="user-name" type="text">
       </div>
       <div class="content">
         <label class="lab">密码：</label>
-        <input type="password">
+        <input id="password" type="password">
       </div>
-      <router-link to="/view/MainViewList">
-        <div class="login">登录</div>
+      <router-link to="/mainView">
+        <div class="login" @click="login">登录</div>
       </router-link>
     </div>
   </div>
@@ -19,7 +19,7 @@
 
 <script>
 export default {
-	name: "HelloWorld",
+	name: "Login",
 	data() {
 		return {
 			msg: "Welcome to Your Vue.js App"
@@ -27,7 +27,13 @@ export default {
 	},
 	methods: {
 		login: function() {
-			console.log("login");
+      if($('#user-name').val() === 'yiqi' && $('#password').val() === '123') {
+
+      }else {
+        alert('密码不正确，请重新输入');
+      }
+			// this.$store.mutations("changeLogin", "1");
+			//登录后改变登录状态 isLogin = 1 ；
 		}
 	}
 };
