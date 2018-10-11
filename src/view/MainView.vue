@@ -1,20 +1,10 @@
 <template>
   <div class="wrapper">
-    <ul>
-      <li>
-        <router-link to="/appListView">
-          应用列表
-        </router-link>
-      </li>
-      <li>
-        <router-link to="/userListView">
-          用户管理
-        </router-link>
-      </li>
+    <router-link to="/appListView">应用列表</router-link>
+    <router-link to="/userListView">用户管理</router-link>
 
-    </ul>
     <!-- <div class="content"> -->
-      <router-view></router-view>
+    <router-view></router-view>
     <!-- </div> -->
   </div>
 </template>

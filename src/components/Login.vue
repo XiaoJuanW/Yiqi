@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import { saveToLocal, loadFromLocal } from "@/common/localStore.js";
+
 export default {
 	name: "Login",
 	data() {
@@ -32,8 +34,9 @@ export default {
       }else {
         alert('密码不正确，请重新输入');
       }
-			this.$store.commit("changeLogin", "1");
-			//登录后改变登录状态 isLogin = 1 ；
+			// this.$store.commit("changeLogin", "1");
+      //登录后改变登录状态 isLogin = 1 ；
+      saveToLocal('1', 'isLogin', true);
 		}
 	}
 };

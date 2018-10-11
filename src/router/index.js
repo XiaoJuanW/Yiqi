@@ -14,19 +14,29 @@ export default new Router({
   }, {
     path: '/login',
     name: 'Login',
-    component: Login
+    component: Login,
+
   }, {
     path: '/mainView',
     name: 'MainView',
     component: MainView,
-    meta:{ auth: true } 
-  }, {
-    path: '/appListView',
-    name: 'AppListView',
-    component: AppListView
-  }, {
-    path: '/userListView',
-    name: 'UserListView',
-    component: UserListView
+    meta: {
+      auth: true
+    },
+    children: [{
+        path: '/appListView',
+        name: 'appListView',
+        component: AppListView
+      },
+      {
+        path: '/userListView',
+        name: 'userListView',
+        component: UserListView
+      },
+      {
+        path: '',
+        redirect: 'appListView'
+      }
+    ]
   }]
 })
