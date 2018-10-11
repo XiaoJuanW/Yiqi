@@ -4,11 +4,11 @@
     <div class="login-wrap">
       <div class="content">
         <label class="lab">用户名：</label>
-        <input id="user-name" type="text">
+        <input id="user-name" type="text" value="yiqi">
       </div>
       <div class="content">
         <label class="lab">密码：</label>
-        <input id="password" type="password">
+        <input id="password" type="password" value="123">
       </div>
       <router-link to="/mainView">
         <div class="login" @click="login">登录</div>
@@ -32,7 +32,7 @@ export default {
       }else {
         alert('密码不正确，请重新输入');
       }
-			// this.$store.mutations("changeLogin", "1");
+			this.$store.commit("changeLogin", "1");
 			//登录后改变登录状态 isLogin = 1 ；
 		}
 	}

@@ -12,13 +12,13 @@ Vue.use(Vuex);
 var store = new Vuex.Store({ //store对象
   state: {
     isLogin: 0,
+  },
+  mutations: {
+    changeLogin(state, data) {
+      state.isLogin = data;
+    }
   }
-})
-const mutations = {
-  changeLogin(state, data) {
-    state.isLogin = data;
-  }
-};
+});
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(m => m.meta.auth)) {
