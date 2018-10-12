@@ -21,17 +21,14 @@ export default {
 		"user-list": UserListView
 	},
 	data() {
-		return {
-			list: [
-				{ name: "名称1", dept: "部门1", deptPer: "王依依" },
-				{ name: "名称2", dept: "部门2", deptPer: "王尔尔" },
-				{ name: "名称3", dept: "部门3", deptPer: "王散散" }
-			]
-		};
+		return {};
 	}
 };
 </script>
 
 <style scoped lang="stylus">
-
+.wrapper {
+  width: 95%;
+  margin: 0 auto;
+}
 </style>

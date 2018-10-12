@@ -1,6 +1,7 @@
 <template>
-  <div class="wrapper">
-    <el-table :data="list" stripe border height="500" style="width: 100%">
+  <div>
+    <el-button class="add" type="primary">新增</el-button>
+    <el-table :data="list" stripe border :height="tableHeight" style="width: 100%">
       <el-table-column type="index" width="50">
       </el-table-column>
       <el-table-column prop="name" label="用户名">
@@ -14,7 +15,6 @@
         </template>
       </el-table-column>
     </el-table>
-    <el-button type="primary">新增</el-button>
   </div>
 </template>
 
@@ -23,6 +23,7 @@ export default {
 	name: "MainView",
 	data() {
 		return {
+			tableHeight: window.innerHeight - 125,
 			list: [
 				{ name: "用户2", pass: "111" },
 				{ name: "用户1", pass: "222" },
@@ -41,19 +42,7 @@ export default {
 				{ name: "用户2", pass: "111" },
 				{ name: "用户1", pass: "222" },
 				{ name: "用户3", pass: "333" },
-				{ name: "用户2", pass: "111" },
-				{ name: "用户1", pass: "222" },
-				{ name: "用户3", pass: "333" },
-				{ name: "用户2", pass: "111" },
-				{ name: "用户1", pass: "222" },
-				{ name: "用户3", pass: "333" },
-				{ name: "用户2", pass: "111" },
-				{ name: "用户1", pass: "222" },
-				{ name: "用户3", pass: "333" },
-				{ name: "用户2", pass: "111" },
-				{ name: "用户1", pass: "222" },
-				{ name: "用户3", pass: "333" },
-				{ name: "用户3", pass: "333" }
+				{ name: "用户2", pass: "111" }
 			]
 		};
 	},
@@ -61,24 +50,19 @@ export default {
 		deleteRow(index, rows) {
 			rows.splice(index, 1);
 		}
-	}
+  },
+  mounted() {
+    const that = this;
+    window.onresize = () => {
+      that.tableHeight = window.innerHeight - 125;
+    }
+  }
 };
 </script>
 
 <style scoped lang="stylus">
-.wrapper {
-  table {
-    width: 90%;
-    margin: 20px auto;
-
-    tr {
-      height: 35px;
-    }
-
-    th, td {
-      border: 1px solid lightgray;
-      text-align: center;
-    }
-  }
+.add {
+  float: right;
+  margin-bottom: 10px;
 }
 </style>
