@@ -1,40 +1,66 @@
 <template>
   <div class="wrapper">
-    <table>
-      <thead>
-        <tr>
-          <th>序号</th>
-          <th>用户名</th>
-          <th>密码</th>
-          <th>操作</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(item, index) in list">
-          <td>{{index + 1}}</td>
-          <td>{{item.name}}</td>
-          <td>{{item.pass}}</td>
-          <td><a href="#">修改密码</a></td>
-        </tr>
-      </tbody>
-    </table>
+    <el-table :data="list" stripe border height="500" style="width: 100%">
+      <el-table-column type="index" width="50">
+      </el-table-column>
+      <el-table-column prop="name" label="用户名">
+      </el-table-column>
+      <el-table-column prop="pass" label="密码">
+      </el-table-column>
+      <el-table-column label="操作">
+        <template slot-scope="scope">
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+          <el-button size="mini" type="danger" @click="deleteRow(scope.$index, list)">删除</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
     <el-button type="primary">新增</el-button>
-    <el-button type="danger">删除</el-button>
   </div>
 </template>
 
 <script>
-
 export default {
 	name: "MainView",
 	data() {
 		return {
 			list: [
-        { name: "用户2", pass: "111"},
-				{ name: "用户1", pass: "222"},
-				{ name: "用户3", pass: "333"}
+				{ name: "用户2", pass: "111" },
+				{ name: "用户1", pass: "222" },
+				{ name: "用户3", pass: "333" },
+				{ name: "用户2", pass: "111" },
+				{ name: "用户1", pass: "222" },
+				{ name: "用户3", pass: "333" },
+				{ name: "用户2", pass: "111" },
+				{ name: "用户1", pass: "222" },
+				{ name: "用户3", pass: "333" },
+				{ name: "用户2", pass: "111" },
+				{ name: "用户1", pass: "222" },
+				{ name: "用户3", pass: "333" },
+				{ name: "用户2", pass: "111" },
+				{ name: "用户1", pass: "222" },
+				{ name: "用户2", pass: "111" },
+				{ name: "用户1", pass: "222" },
+				{ name: "用户3", pass: "333" },
+				{ name: "用户2", pass: "111" },
+				{ name: "用户1", pass: "222" },
+				{ name: "用户3", pass: "333" },
+				{ name: "用户2", pass: "111" },
+				{ name: "用户1", pass: "222" },
+				{ name: "用户3", pass: "333" },
+				{ name: "用户2", pass: "111" },
+				{ name: "用户1", pass: "222" },
+				{ name: "用户3", pass: "333" },
+				{ name: "用户2", pass: "111" },
+				{ name: "用户1", pass: "222" },
+				{ name: "用户3", pass: "333" },
+				{ name: "用户3", pass: "333" }
 			]
 		};
+	},
+	methods: {
+		deleteRow(index, rows) {
+			rows.splice(index, 1);
+		}
 	}
 };
 </script>
