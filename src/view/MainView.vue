@@ -1,8 +1,8 @@
 <template>
   <div class="wrapper">
     <ul>
-      <router-link to="/mainView/appListView">应用列表</router-link>
-      <router-link to="/mainView/userListView">用户管理</router-link>
+      <router-link to="/main/appList">应用列表</router-link>
+      <router-link to="/main/userList">用户管理</router-link>
     </ul>
     <div class="content">
       <router-view></router-view>

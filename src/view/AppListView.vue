@@ -16,7 +16,9 @@
           <td>{{item.name}}</td>
           <td>{{item.dept}}</td>
           <td>{{item.deptPer}}</td>
-          <td><a href="#">详情</a></td>
+          <td>
+            <router-link to="/appDetail">详情</router-link>
+          </td>
         </tr>
       </tbody>
     </table>

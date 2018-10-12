@@ -10,7 +10,7 @@
         <label class="lab">密码：</label>
         <input id="password" type="password" value="123">
       </div>
-      <router-link to="/mainView">
+      <router-link to="/main">
         <div class="login" @click="login">登录</div>
       </router-link>
     </div>
