@@ -1,11 +1,12 @@
 <template>
   <div class="wrapper">
-    <router-link to="/appListView">应用列表</router-link>
-    <router-link to="/userListView">用户管理</router-link>
-
-    <!-- <div class="content"> -->
-    <router-view></router-view>
-    <!-- </div> -->
+    <ul>
+      <router-link to="/mainView/appListView">应用列表</router-link>
+      <router-link to="/mainView/userListView">用户管理</router-link>
+    </ul>
+    <div class="content">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
@@ -27,8 +28,8 @@ export default {
 <style scoped lang="stylus">
 .wrapper {
   .content {
-    width: 90%;
-    height: 90%;
+    width: 800px;
+    height: 400px;
   }
 }
 </style>

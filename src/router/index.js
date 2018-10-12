@@ -24,19 +24,16 @@ export default new Router({
       auth: true
     },
     children: [{
-        path: '/appListView',
-        name: 'appListView',
-        component: AppListView
-      },
-      {
-        path: '/userListView',
-        name: 'userListView',
-        component: UserListView
-      },
-      {
-        path: '',
-        redirect: 'appListView'
-      }
-    ]
+      path: 'appListView',
+      name: 'appListView',
+      component: AppListView
+    }, {
+      path: 'userListView',
+      name: 'userListView',
+      component: UserListView
+    }, {
+      path: '',
+      redirect: 'appListView'
+    }]
   }]
 })

@@ -8,8 +8,14 @@ import $ from 'jquery'
 import '@/css/base.css'
 import { saveToLocal, loadFromLocal } from "@/common/localStore.js"
 
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css';
+import { Button } from 'element-ui';
+
 Vue.config.productionTip = false
 Vue.use(Vuex);
+Vue.use(ElementUI);
+Vue.use(Button);
 
 var store = new Vuex.Store({ //store对象
   state: {
