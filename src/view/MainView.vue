@@ -1,18 +1,25 @@
 <template>
   <div class="wrapper">
-    <ul>
-      <router-link to="/main/appList">应用列表</router-link>
-      <router-link to="/main/userList">用户管理</router-link>
-    </ul>
-    <div class="content">
-      <router-view></router-view>
-    </div>
+    <el-tabs>
+      <el-tab-pane label="应用列表">
+        <app-list></app-list>
+      </el-tab-pane>
+      <el-tab-pane label="用户管理">
+        <user-list></user-list>
+      </el-tab-pane>
+    </el-tabs>
   </div>
 </template>
 
 <script>
+import AppListView from "@/view/AppListView";
+import UserListView from "@/view/UserListView";
 export default {
 	name: "MainView",
+	components: {
+		"app-list": AppListView,
+		"user-list": UserListView
+	},
 	data() {
 		return {
 			list: [
@@ -26,10 +33,5 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-.wrapper {
-  .content {
-    width: 800px;
-    height: 400px;
-  }
-}
+
 </style>
