@@ -426,7 +426,7 @@
     <tr>
       <td class="tg-subheader">*项目描述</td>
       <td class="" colspan="7">
-        <el-input></el-input>
+        <el-input type="textarea"></el-input>
       </td>
     </tr>
     <tr>
