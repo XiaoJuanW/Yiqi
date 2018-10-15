@@ -10,8 +10,8 @@
       </el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
-          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-          <el-button size="mini" type="danger" @click="deleteRow(scope.$index, list)">删除</el-button>
+          <el-button size="mini" @click="openEditPsdBox(scope.row)">修改密码</el-button>
+          <el-button size="mini" type="danger" @click="openDeleteUserBox(scope.$index, list)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -25,8 +25,8 @@ export default {
 		return {
 			tableHeight: window.innerHeight - 125,
 			list: [
-				{ name: "用户2", pass: "111" },
-				{ name: "用户1", pass: "222" },
+				{ name: "用户1", pass: "111" },
+				{ name: "用户2", pass: "222" },
 				{ name: "用户3", pass: "333" },
 				{ name: "用户2", pass: "111" },
 				{ name: "用户1", pass: "222" },
@@ -47,16 +47,63 @@ export default {
 		};
 	},
 	methods: {
-		deleteRow(index, rows) {
+		openDeleteUserBox(index, rows) {
+			this.$confirm("即将删除该用户, 是否继续?", "提示", {
+				confirmButtonText: "确定",
+				cancelButtonText: "取消",
+				type: "warning"
+			})
+				.then(() => {
+					this.deleteUser(index, rows);
+				})
+				.catch(() => {
+					this.$message({
+						type: "info",
+						message: "已取消删除"
+					});
+				});
+		},
+		openEditPsdBox(row) {
+			this.$prompt("请输入密码", "提示", {
+				confirmButtonText: "确定",
+				cancelButtonText: "取消",
+				inputPattern: /^[a-zA-Z0-9]{6,12}$/,
+				inputErrorMessage: "密码格式不正确(6-12位字母和数字)"
+			})
+				.then(({ value }) => {
+					this.changePassword(value, row);
+				})
+				.catch(() => {
+					this.$message({
+						type: "info",
+						message: "取消输入"
+					});
+				});
+		},
+
+		// 删除用户
+		deleteUser(index, rows) {
 			rows.splice(index, 1);
+			this.$message({
+				showClose: true,
+				message: "删除成功",
+				type: "success"
+			});
+		},
+		// 更改密码
+		changePassword(newpsd, row) {
+			this.$message({
+				type: "success",
+				message: "该用户的新密码是: " + newpsd
+			});
 		}
-  },
-  mounted() {
-    const that = this;
-    window.onresize = () => {
-      that.tableHeight = window.innerHeight - 125;
-    }
-  }
+	},
+	mounted() {
+		const that = this;
+		window.onresize = () => {
+			that.tableHeight = window.innerHeight - 125;
+		};
+	}
 };
 </script>
 
