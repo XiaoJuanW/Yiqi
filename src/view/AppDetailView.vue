@@ -1,463 +1,466 @@
 <template>
-  <table class="tg">
-    <tr>
-      <td class="tg-header" colspan="8">大数据资源申请表</td>
-    </tr>
-    <tr>
-      <td class="tg-subheader">*申请日期</td>
-      <td class="" colspan="3">
-        <el-date-picker v-model="applicationDate" type="date"></el-date-picker>
-      </td>
-      <td class="tg-subheader">*发布日期</td>
-      <td class="" colspan="3">
-        <el-date-picker v-model="releaseDate" type="date"></el-date-picker>
-      </td>
-    </tr>
-    <tr>
-      <td class="tg-subheader">*申请人</td>
-      <td class="">
-        <el-input v-model="applicant"></el-input>
-      </td>
-      <td class="tg-subheader">所属部门</td>
-      <td class="">
-        <el-input v-model="department"></el-input>
-      </td>
-      <td class="tg-subheader">*联系电话</td>
-      <td class="">
-        <el-input v-model="tel"></el-input>
-      </td>
-      <td class="tg-subheader">*E-mail</td>
-      <td class="">
-        <el-input v-model="email"></el-input>
-      </td>
-    </tr>
-    <tr>
-      <td class="tg-subheader" colspan="8">资源申请</td>
-    </tr>
-    <tr>
-      <td class="tg-subheader">*数据分类</td>
-      <td class="tg-subheader">*源系统</td>
-      <td class="tg-subheader">*数据结构</td>
-      <td class="tg-subheader">*存量全量</td>
-      <td class="tg-subheader">*日增量</td>
-      <td class="tg-subheader">*实时性要求</td>
-      <td class="tg-subheader">吞吐量（单位秒）</td>
-      <td class="tg-subheader">*离线/在线</td>
-    </tr>
-    <tr>
-      <td class="">
-        <el-select v-model="dataType">
-          <el-option v-for="item in dataTypeOptions" :key="item.value" :label="item.label" :value="item.value">
-          </el-option>
-        </el-select>
-      </td>
-      <td class="">
-        <el-input v-model="systemSource"></el-input>
-      </td>
-      <td class="">
-        <el-select v-model="dataStructure">
-          <el-option v-for="item in dataStructureOptions" :key="item.value" :label="item.label" :value="item.value">
-          </el-option>
-        </el-select>
-      </td>
-      <td class="">
-        <el-input v-model="stock"></el-input>
-      </td>
-      <td class="">
-        <el-input v-model="diurnalIncrement"></el-input>
-      </td>
-      <td class="">
-        <el-select v-model="realTime">
-          <el-option v-for="item in realTimeOptions" :key="item.value" :label="item.label" :value="item.value">
-          </el-option>
-        </el-select>
-      </td>
-      <td class="">
-        <el-input v-model="throughput"></el-input>
-      </td>
-      <td class="">
-        <el-select v-model="line">
-          <el-option v-for="item in lineOptions" :key="item.value" :label="item.label" :value="item.value">
-          </el-option>
-        </el-select>
-      </td>
-    </tr>
-    <tr>
-      <td class="tg-subheader" colspan="8">组件申请</td>
-    </tr>
-    <tr>
-      <td class="tg-subheader">类别</td>
-      <td class="tg-subheader">组件</td>
-      <td class="tg-subheader">编程语言</td>
-      <td class="tg-subheader" colspan="2">用途</td>
-      <td class="tg-subheader" colspan="3">详细描述</td>
-    </tr>
-    <tr>
-      <td class="tg-subheader" rowspan="3">数据库</td>
-      <td class="tg-subheader">
-        <el-checkbox label="HBase" name="type"></el-checkbox>
-      </td>
-      <td class="">
-        <el-select v-model="programingLanguage">
-          <el-option v-for="item in programingLanguageOptions" :key="item.value" :label="item.label" :value="item.value">
-          </el-option>
-        </el-select>
-      </td>
-      <td class="" colspan="2">
-        <el-input></el-input>
-      </td>
-      <td class="" colspan="3">
-        <el-input></el-input>
-      </td>
-    </tr>
-    <tr>
-      <td class="tg-subheader">
-        <el-checkbox label="MongoDB" name="type"></el-checkbox>
-      </td>
-      <td class="">
-        <el-select v-model="programingLanguage">
-          <el-option v-for="item in programingLanguageOptions" :key="item.value" :label="item.label" :value="item.value">
-          </el-option>
-        </el-select>
-      </td>
-      <td class="" colspan="2">
-        <el-input></el-input>
-      </td>
-      <td class="" colspan="3">
-        <el-input></el-input>
-      </td>
-    </tr>
-    <tr>
-      <td class="tg-subheader">
-        <el-checkbox label="Neo4j" name="type"></el-checkbox>
-      </td>
-      <td class="">
-        <el-select v-model="programingLanguage">
-          <el-option v-for="item in programingLanguageOptions" :key="item.value" :label="item.label" :value="item.value">
-          </el-option>
-        </el-select>
-      </td>
-      <td class="" colspan="2">
-        <el-input></el-input>
-      </td>
-      <td class="" colspan="3">
-        <el-input></el-input>
-      </td>
-    </tr>
-    <tr>
-      <td class="tg-subheader" rowspan="2">SQL</td>
-      <td class="tg-subheader">
-        <el-checkbox label="Spark SQL" name="type"></el-checkbox>
-      </td>
-      <td class="">
-        <el-select v-model="programingLanguage">
-          <el-option v-for="item in programingLanguageOptions" :key="item.value" :label="item.label" :value="item.value">
-          </el-option>
-        </el-select>
-      </td>
-      <td class="" colspan="2">
-        <el-input></el-input>
-      </td>
-      <td class="" colspan="3">
-        <el-input></el-input>
-      </td>
-    </tr>
-    <tr>
-      <td class="tg-subheader">
-        <el-checkbox label="Impala" name="type"></el-checkbox>
-      </td>
-      <td class="">
-        <el-select v-model="programingLanguage">
-          <el-option v-for="item in programingLanguageOptions" :key="item.value" :label="item.label" :value="item.value">
-          </el-option>
-        </el-select>
-      </td>
-      <td class="" colspan="2">
-        <el-input></el-input>
-      </td>
-      <td class="" colspan="3">
-        <el-input></el-input>
-      </td>
-    </tr>
-    <tr>
-      <td class="tg-subheader" rowspan="4">批量计算</td>
-      <td class="tg-subheader">
-        <el-checkbox label="Hive" name="type"></el-checkbox>
-      </td>
-      <td class="">
-        <el-select v-model="programingLanguage">
-          <el-option v-for="item in programingLanguageOptions" :key="item.value" :label="item.label" :value="item.value">
-          </el-option>
-        </el-select>
-      </td>
-      <td class="" colspan="2">
-        <el-input></el-input>
-      </td>
-      <td class="" colspan="3">
-        <el-input></el-input>
-      </td>
-    </tr>
-    <tr>
-      <td class="tg-subheader">
-        <el-checkbox label="Spark" name="type"></el-checkbox>
-      </td>
-      <td class="">
-        <el-select v-model="programingLanguage">
-          <el-option v-for="item in programingLanguageOptions" :key="item.value" :label="item.label" :value="item.value">
-          </el-option>
-        </el-select>
-      </td>
-      <td class="" colspan="2">
-        <el-input></el-input>
-      </td>
-      <td class="" colspan="3">
-        <el-input></el-input>
-      </td>
-    </tr>
-    <tr>
-      <td class="">
-        <el-checkbox label="Pig" name="type"></el-checkbox>
-      </td>
-      <td class="">
-        <el-select v-model="programingLanguage">
-          <el-option v-for="item in programingLanguageOptions" :key="item.value" :label="item.label" :value="item.value">
-          </el-option>
-        </el-select>
-      </td>
-      <td class="" colspan="2">
-        <el-input></el-input>
-      </td>
-      <td class="" colspan="3">
-        <el-input></el-input>
-      </td>
-    </tr>
-    <tr>
-      <td class="tg-subheader">
-        <el-checkbox label="MapReduce" name="type"></el-checkbox>
-      </td>
-      <td class="">
-        <el-select v-model="programingLanguage">
-          <el-option v-for="item in programingLanguageOptions" :key="item.value" :label="item.label" :value="item.value">
-          </el-option>
-        </el-select>
-      </td>
-      <td class="" colspan="2">
-        <el-input></el-input>
-      </td>
-      <td class="" colspan="3">
-        <el-input></el-input>
-      </td>
-    </tr>
-    <tr>
-      <td class="tg-subheader">流计算</td>
-      <td class="tg-subheader">
-        <el-checkbox label="Spark Sream" name="type"></el-checkbox>
-      </td>
-      <td class="">
-        <el-select v-model="programingLanguage">
-          <el-option v-for="item in programingLanguageOptions" :key="item.value" :label="item.label" :value="item.value">
-          </el-option>
-        </el-select>
-      </td>
-      <td class="tg-subheader" colspan="2">
-        <el-input></el-input>
-      </td>
-      <td class="tg-subheader" colspan="3">
-        <el-input></el-input>
-      </td>
-    </tr>
-    <tr>
-      <td class="tg-subheader" rowspan="3">数据集成</td>
-      <td class="tg-subheader">
-        <el-checkbox label="Flume" name="type"></el-checkbox>
-      </td>
-      <td class="">
-        <el-select v-model="programingLanguage">
-          <el-option v-for="item in programingLanguageOptions" :key="item.value" :label="item.label" :value="item.value">
-          </el-option>
-        </el-select>
-      </td>
-      <td class="tg-subheader" colspan="2">
-        <el-input></el-input>
-      </td>
-      <td class="tg-subheader" colspan="3">
-        <el-input></el-input>
-      </td>
-    </tr>
-    <tr>
-      <td class="tg-subheader">
-        <el-checkbox label="Kafka" name="type"></el-checkbox>
-      </td>
-      <td class="">
-        <el-select v-model="programingLanguage">
-          <el-option v-for="item in programingLanguageOptions" :key="item.value" :label="item.label" :value="item.value">
-          </el-option>
-        </el-select>
-      </td>
-      <td class="tg-subheader" colspan="2">
-        <el-input></el-input>
-      </td>
-      <td class="tg-subheader" colspan="3">
-        <el-input></el-input>
-      </td>
-    </tr>
-    <tr>
-      <td class="tg-subheader">
-        <el-checkbox label="Sqoop" name="type"></el-checkbox>
-      </td>
-      <td class="">
-        <el-select v-model="programingLanguage">
-          <el-option v-for="item in programingLanguageOptions" :key="item.value" :label="item.label" :value="item.value">
-          </el-option>
-        </el-select>
-      </td>
-      <td class="tg-subheader" colspan="2">
-        <el-input></el-input>
-      </td>
-      <td class="tg-subheader" colspan="3">
-        <el-input></el-input>
-      </td>
-    </tr>
-    <tr>
-      <td class="tg-subheader">OLAP</td>
-      <td class="tg-subheader">
-        <el-checkbox label="Kylin" name="type"></el-checkbox>
-      </td>
-      <td class="">
-        <el-select v-model="programingLanguage">
-          <el-option v-for="item in programingLanguageOptions" :key="item.value" :label="item.label" :value="item.value">
-          </el-option>
-        </el-select>
-      </td>
-      <td class="tg-subheader" colspan="2">
-        <el-input></el-input>
-      </td>
-      <td class="tg-subheader" colspan="3">
-        <el-input></el-input>
-      </td>
-    </tr>
-    <tr>
-      <td class="tg-subheader">数据挖掘</td>
-      <td class="tg-subheader">
-        <el-checkbox label="Spark ML" name="type"></el-checkbox>
-      </td>
-      <td class="">
-        <el-select v-model="programingLanguage">
-          <el-option v-for="item in programingLanguageOptions" :key="item.value" :label="item.label" :value="item.value">
-          </el-option>
-        </el-select>
-      </td>
-      <td class="tg-subheader" colspan="2">
-        <el-input></el-input>
-      </td>
-      <td class="tg-subheader" colspan="3">
-        <el-input></el-input>
-      </td>
-    </tr>
-    <tr>
-      <td class="tg-subheader">搜索</td>
-      <td class="tg-subheader">
-        <el-checkbox label="Solr" name="type"></el-checkbox>
-      </td>
-      <td class="">
-        <el-select v-model="programingLanguage">
-          <el-option v-for="item in programingLanguageOptions" :key="item.value" :label="item.label" :value="item.value">
-          </el-option>
-        </el-select>
-      </td>
-      <td class="tg-subheader" colspan="2">
-        <el-input></el-input>
-      </td>
-      <td class="tg-subheader" colspan="3">
-        <el-input></el-input>
-      </td>
-    </tr>
-    <tr>
-      <td class="tg-subheader">文件系统</td>
-      <td class="tg-subheader">
-        <el-checkbox label="HDFS" name="type"></el-checkbox>
-      </td>
-      <td class="">
-        <el-select v-model="programingLanguage">
-          <el-option v-for="item in programingLanguageOptions" :key="item.value" :label="item.label" :value="item.value">
-          </el-option>
-        </el-select>
-      </td>
-      <td class="" colspan="2">
-        <el-input></el-input>
-      </td>
-      <td class="" colspan="3">
-        <el-input></el-input>
-      </td>
-    </tr>
-    <tr>
-      <td class="tg-subheader">其他</td>
-      <td class="">
-        <el-input></el-input>
-      </td>
-      <td class="">
-        <el-select v-model="programingLanguage">
-          <el-option v-for="item in programingLanguageOptions" :key="item.value" :label="item.label" :value="item.value">
-          </el-option>
-        </el-select>
-      </td>
-      <td class="" colspan="2">
-        <el-input></el-input>
-      </td>
-      <td class="" colspan="3">
-        <el-input></el-input>
-      </td>
-    </tr>
-    <tr>
-      <td class="tg-subheader" colspan="8"></td>
-    </tr>
-    <tr>
-      <td class="tg-subheader">*项目中文名称</td>
-      <td class="" colspan="7">
-        <el-input></el-input>
-      </td>
-    </tr>
-    <tr>
-      <td class="tg-subheader">*项目英文名称</td>
-      <td class="" colspan="7">
-        <el-input></el-input>
-      </td>
-    </tr>
-    <tr>
-      <td class="tg-subheader">*项目描述</td>
-      <td class="" colspan="7">
-        <el-input type="textarea"></el-input>
-      </td>
-    </tr>
-    <tr>
-      <td class="tg-subheader">*功能架构图</td>
-      <td class="" colspan="7">
-        <el-upload action="https://jsonplaceholder.typicode.com/posts/" list-type="picture-card" :on-preview="handlePictureCardPreview" :on-remove="handleRemove">
-          <i class="el-icon-plus"></i>
-        </el-upload>
-        <el-dialog :visible.sync="dialogVisible">
-          <img width="100%" :src="dialogImageUrl" alt="">
-        </el-dialog>
-      </td>
-    </tr>
-    <tr>
-      <td class="tg-subheader">*数据架构图</td>
-      <td class="" colspan="7">
-        <el-upload action="https://jsonplaceholder.typicode.com/posts/" list-type="picture-card" :on-preview="handlePictureCardPreview" :on-remove="handleRemove">
-          <i class="el-icon-plus"></i>
-        </el-upload>
-        <el-dialog :visible.sync="dialogVisible">
-          <img width="100%" :src="dialogImageUrl" alt="">
-        </el-dialog>
-      </td>
-    </tr>
-    <tr>
-      <td class="tg-subheader">用户名</td>
-      <td class="" colspan="7">
-        <el-input></el-input>
-      </td>
-    </tr>
-  </table>
+  <div>
+    <table class="tg">
+      <tr>
+        <td class="tg-header" colspan="8">大数据资源申请表</td>
+      </tr>
+      <tr>
+        <td class="tg-subheader">*申请日期</td>
+        <td class="" colspan="3">
+          <el-date-picker v-model="applicationDate" type="date"></el-date-picker>
+        </td>
+        <td class="tg-subheader">*发布日期</td>
+        <td class="" colspan="3">
+          <el-date-picker v-model="releaseDate" type="date"></el-date-picker>
+        </td>
+      </tr>
+      <tr>
+        <td class="tg-subheader">*申请人</td>
+        <td class="">
+          <el-input v-model="applicant"></el-input>
+        </td>
+        <td class="tg-subheader">所属部门</td>
+        <td class="">
+          <el-input v-model="department"></el-input>
+        </td>
+        <td class="tg-subheader">*联系电话</td>
+        <td class="">
+          <el-input v-model="tel"></el-input>
+        </td>
+        <td class="tg-subheader">*E-mail</td>
+        <td class="">
+          <el-input v-model="email"></el-input>
+        </td>
+      </tr>
+      <tr>
+        <td class="tg-subheader" colspan="8">资源申请</td>
+      </tr>
+      <tr>
+        <td class="tg-subheader">*数据分类</td>
+        <td class="tg-subheader">*源系统</td>
+        <td class="tg-subheader">*数据结构</td>
+        <td class="tg-subheader">*存量全量</td>
+        <td class="tg-subheader">*日增量</td>
+        <td class="tg-subheader">*实时性要求</td>
+        <td class="tg-subheader">吞吐量（单位秒）</td>
+        <td class="tg-subheader">*离线/在线</td>
+      </tr>
+      <tr>
+        <td class="">
+          <el-select v-model="dataType">
+            <el-option v-for="item in dataTypeOptions" :key="item.value" :label="item.label" :value="item.value">
+            </el-option>
+          </el-select>
+        </td>
+        <td class="">
+          <el-input v-model="systemSource"></el-input>
+        </td>
+        <td class="">
+          <el-select v-model="dataStructure">
+            <el-option v-for="item in dataStructureOptions" :key="item.value" :label="item.label" :value="item.value">
+            </el-option>
+          </el-select>
+        </td>
+        <td class="">
+          <el-input v-model="stock"></el-input>
+        </td>
+        <td class="">
+          <el-input v-model="diurnalIncrement"></el-input>
+        </td>
+        <td class="">
+          <el-select v-model="realTime">
+            <el-option v-for="item in realTimeOptions" :key="item.value" :label="item.label" :value="item.value">
+            </el-option>
+          </el-select>
+        </td>
+        <td class="">
+          <el-input v-model="throughput"></el-input>
+        </td>
+        <td class="">
+          <el-select v-model="line">
+            <el-option v-for="item in lineOptions" :key="item.value" :label="item.label" :value="item.value">
+            </el-option>
+          </el-select>
+        </td>
+      </tr>
+      <tr>
+        <td class="tg-subheader" colspan="8">组件申请</td>
+      </tr>
+      <tr>
+        <td class="tg-subheader">类别</td>
+        <td class="tg-subheader">组件</td>
+        <td class="tg-subheader">编程语言</td>
+        <td class="tg-subheader" colspan="2">用途</td>
+        <td class="tg-subheader" colspan="3">详细描述</td>
+      </tr>
+      <tr>
+        <td class="tg-subheader" rowspan="3">数据库</td>
+        <td class="tg-subheader">
+          <el-checkbox label="HBase" name="type"></el-checkbox>
+        </td>
+        <td class="">
+          <el-select v-model="programingLanguage">
+            <el-option v-for="item in programingLanguageOptions" :key="item.value" :label="item.label" :value="item.value">
+            </el-option>
+          </el-select>
+        </td>
+        <td class="" colspan="2">
+          <el-input></el-input>
+        </td>
+        <td class="" colspan="3">
+          <el-input></el-input>
+        </td>
+      </tr>
+      <tr>
+        <td class="tg-subheader">
+          <el-checkbox label="MongoDB" name="type"></el-checkbox>
+        </td>
+        <td class="">
+          <el-select v-model="programingLanguage">
+            <el-option v-for="item in programingLanguageOptions" :key="item.value" :label="item.label" :value="item.value">
+            </el-option>
+          </el-select>
+        </td>
+        <td class="" colspan="2">
+          <el-input></el-input>
+        </td>
+        <td class="" colspan="3">
+          <el-input></el-input>
+        </td>
+      </tr>
+      <tr>
+        <td class="tg-subheader">
+          <el-checkbox label="Neo4j" name="type"></el-checkbox>
+        </td>
+        <td class="">
+          <el-select v-model="programingLanguage">
+            <el-option v-for="item in programingLanguageOptions" :key="item.value" :label="item.label" :value="item.value">
+            </el-option>
+          </el-select>
+        </td>
+        <td class="" colspan="2">
+          <el-input></el-input>
+        </td>
+        <td class="" colspan="3">
+          <el-input></el-input>
+        </td>
+      </tr>
+      <tr>
+        <td class="tg-subheader" rowspan="2">SQL</td>
+        <td class="tg-subheader">
+          <el-checkbox label="Spark SQL" name="type"></el-checkbox>
+        </td>
+        <td class="">
+          <el-select v-model="programingLanguage">
+            <el-option v-for="item in programingLanguageOptions" :key="item.value" :label="item.label" :value="item.value">
+            </el-option>
+          </el-select>
+        </td>
+        <td class="" colspan="2">
+          <el-input></el-input>
+        </td>
+        <td class="" colspan="3">
+          <el-input></el-input>
+        </td>
+      </tr>
+      <tr>
+        <td class="tg-subheader">
+          <el-checkbox label="Impala" name="type"></el-checkbox>
+        </td>
+        <td class="">
+          <el-select v-model="programingLanguage">
+            <el-option v-for="item in programingLanguageOptions" :key="item.value" :label="item.label" :value="item.value">
+            </el-option>
+          </el-select>
+        </td>
+        <td class="" colspan="2">
+          <el-input></el-input>
+        </td>
+        <td class="" colspan="3">
+          <el-input></el-input>
+        </td>
+      </tr>
+      <tr>
+        <td class="tg-subheader" rowspan="4">批量计算</td>
+        <td class="tg-subheader">
+          <el-checkbox label="Hive" name="type"></el-checkbox>
+        </td>
+        <td class="">
+          <el-select v-model="programingLanguage">
+            <el-option v-for="item in programingLanguageOptions" :key="item.value" :label="item.label" :value="item.value">
+            </el-option>
+          </el-select>
+        </td>
+        <td class="" colspan="2">
+          <el-input></el-input>
+        </td>
+        <td class="" colspan="3">
+          <el-input></el-input>
+        </td>
+      </tr>
+      <tr>
+        <td class="tg-subheader">
+          <el-checkbox label="Spark" name="type"></el-checkbox>
+        </td>
+        <td class="">
+          <el-select v-model="programingLanguage">
+            <el-option v-for="item in programingLanguageOptions" :key="item.value" :label="item.label" :value="item.value">
+            </el-option>
+          </el-select>
+        </td>
+        <td class="" colspan="2">
+          <el-input></el-input>
+        </td>
+        <td class="" colspan="3">
+          <el-input></el-input>
+        </td>
+      </tr>
+      <tr>
+        <td class="">
+          <el-checkbox label="Pig" name="type"></el-checkbox>
+        </td>
+        <td class="">
+          <el-select v-model="programingLanguage">
+            <el-option v-for="item in programingLanguageOptions" :key="item.value" :label="item.label" :value="item.value">
+            </el-option>
+          </el-select>
+        </td>
+        <td class="" colspan="2">
+          <el-input></el-input>
+        </td>
+        <td class="" colspan="3">
+          <el-input></el-input>
+        </td>
+      </tr>
+      <tr>
+        <td class="tg-subheader">
+          <el-checkbox label="MapReduce" name="type"></el-checkbox>
+        </td>
+        <td class="">
+          <el-select v-model="programingLanguage">
+            <el-option v-for="item in programingLanguageOptions" :key="item.value" :label="item.label" :value="item.value">
+            </el-option>
+          </el-select>
+        </td>
+        <td class="" colspan="2">
+          <el-input></el-input>
+        </td>
+        <td class="" colspan="3">
+          <el-input></el-input>
+        </td>
+      </tr>
+      <tr>
+        <td class="tg-subheader">流计算</td>
+        <td class="tg-subheader">
+          <el-checkbox label="Spark Sream" name="type"></el-checkbox>
+        </td>
+        <td class="">
+          <el-select v-model="programingLanguage">
+            <el-option v-for="item in programingLanguageOptions" :key="item.value" :label="item.label" :value="item.value">
+            </el-option>
+          </el-select>
+        </td>
+        <td class="tg-subheader" colspan="2">
+          <el-input></el-input>
+        </td>
+        <td class="tg-subheader" colspan="3">
+          <el-input></el-input>
+        </td>
+      </tr>
+      <tr>
+        <td class="tg-subheader" rowspan="3">数据集成</td>
+        <td class="tg-subheader">
+          <el-checkbox label="Flume" name="type"></el-checkbox>
+        </td>
+        <td class="">
+          <el-select v-model="programingLanguage">
+            <el-option v-for="item in programingLanguageOptions" :key="item.value" :label="item.label" :value="item.value">
+            </el-option>
+          </el-select>
+        </td>
+        <td class="tg-subheader" colspan="2">
+          <el-input></el-input>
+        </td>
+        <td class="tg-subheader" colspan="3">
+          <el-input></el-input>
+        </td>
+      </tr>
+      <tr>
+        <td class="tg-subheader">
+          <el-checkbox label="Kafka" name="type"></el-checkbox>
+        </td>
+        <td class="">
+          <el-select v-model="programingLanguage">
+            <el-option v-for="item in programingLanguageOptions" :key="item.value" :label="item.label" :value="item.value">
+            </el-option>
+          </el-select>
+        </td>
+        <td class="tg-subheader" colspan="2">
+          <el-input></el-input>
+        </td>
+        <td class="tg-subheader" colspan="3">
+          <el-input></el-input>
+        </td>
+      </tr>
+      <tr>
+        <td class="tg-subheader">
+          <el-checkbox label="Sqoop" name="type"></el-checkbox>
+        </td>
+        <td class="">
+          <el-select v-model="programingLanguage">
+            <el-option v-for="item in programingLanguageOptions" :key="item.value" :label="item.label" :value="item.value">
+            </el-option>
+          </el-select>
+        </td>
+        <td class="tg-subheader" colspan="2">
+          <el-input></el-input>
+        </td>
+        <td class="tg-subheader" colspan="3">
+          <el-input></el-input>
+        </td>
+      </tr>
+      <tr>
+        <td class="tg-subheader">OLAP</td>
+        <td class="tg-subheader">
+          <el-checkbox label="Kylin" name="type"></el-checkbox>
+        </td>
+        <td class="">
+          <el-select v-model="programingLanguage">
+            <el-option v-for="item in programingLanguageOptions" :key="item.value" :label="item.label" :value="item.value">
+            </el-option>
+          </el-select>
+        </td>
+        <td class="tg-subheader" colspan="2">
+          <el-input></el-input>
+        </td>
+        <td class="tg-subheader" colspan="3">
+          <el-input></el-input>
+        </td>
+      </tr>
+      <tr>
+        <td class="tg-subheader">数据挖掘</td>
+        <td class="tg-subheader">
+          <el-checkbox label="Spark ML" name="type"></el-checkbox>
+        </td>
+        <td class="">
+          <el-select v-model="programingLanguage">
+            <el-option v-for="item in programingLanguageOptions" :key="item.value" :label="item.label" :value="item.value">
+            </el-option>
+          </el-select>
+        </td>
+        <td class="tg-subheader" colspan="2">
+          <el-input></el-input>
+        </td>
+        <td class="tg-subheader" colspan="3">
+          <el-input></el-input>
+        </td>
+      </tr>
+      <tr>
+        <td class="tg-subheader">搜索</td>
+        <td class="tg-subheader">
+          <el-checkbox label="Solr" name="type"></el-checkbox>
+        </td>
+        <td class="">
+          <el-select v-model="programingLanguage">
+            <el-option v-for="item in programingLanguageOptions" :key="item.value" :label="item.label" :value="item.value">
+            </el-option>
+          </el-select>
+        </td>
+        <td class="tg-subheader" colspan="2">
+          <el-input></el-input>
+        </td>
+        <td class="tg-subheader" colspan="3">
+          <el-input></el-input>
+        </td>
+      </tr>
+      <tr>
+        <td class="tg-subheader">文件系统</td>
+        <td class="tg-subheader">
+          <el-checkbox label="HDFS" name="type"></el-checkbox>
+        </td>
+        <td class="">
+          <el-select v-model="programingLanguage">
+            <el-option v-for="item in programingLanguageOptions" :key="item.value" :label="item.label" :value="item.value">
+            </el-option>
+          </el-select>
+        </td>
+        <td class="" colspan="2">
+          <el-input></el-input>
+        </td>
+        <td class="" colspan="3">
+          <el-input></el-input>
+        </td>
+      </tr>
+      <tr>
+        <td class="tg-subheader">其他</td>
+        <td class="">
+          <el-input></el-input>
+        </td>
+        <td class="">
+          <el-select v-model="programingLanguage">
+            <el-option v-for="item in programingLanguageOptions" :key="item.value" :label="item.label" :value="item.value">
+            </el-option>
+          </el-select>
+        </td>
+        <td class="" colspan="2">
+          <el-input></el-input>
+        </td>
+        <td class="" colspan="3">
+          <el-input></el-input>
+        </td>
+      </tr>
+      <tr>
+        <td class="tg-subheader" colspan="8"></td>
+      </tr>
+      <tr>
+        <td class="tg-subheader">*项目中文名称</td>
+        <td class="" colspan="7">
+          <el-input></el-input>
+        </td>
+      </tr>
+      <tr>
+        <td class="tg-subheader">*项目英文名称</td>
+        <td class="" colspan="7">
+          <el-input></el-input>
+        </td>
+      </tr>
+      <tr>
+        <td class="tg-subheader">*项目描述</td>
+        <td class="" colspan="7">
+          <el-input type="textarea"></el-input>
+        </td>
+      </tr>
+      <tr>
+        <td class="tg-subheader">*功能架构图</td>
+        <td class="" colspan="7">
+          <el-upload action="https://jsonplaceholder.typicode.com/posts/" list-type="picture-card" :on-preview="handlePictureCardPreview" :on-remove="handleRemove">
+            <i class="el-icon-plus"></i>
+          </el-upload>
+          <el-dialog :visible.sync="dialogVisible">
+            <img width="100%" :src="dialogImageUrl" alt="">
+          </el-dialog>
+        </td>
+      </tr>
+      <tr>
+        <td class="tg-subheader">*数据架构图</td>
+        <td class="" colspan="7">
+          <el-upload action="https://jsonplaceholder.typicode.com/posts/" list-type="picture-card" :on-preview="handlePictureCardPreview" :on-remove="handleRemove">
+            <i class="el-icon-plus"></i>
+          </el-upload>
+          <el-dialog :visible.sync="dialogVisible">
+            <img width="100%" :src="dialogImageUrl" alt="">
+          </el-dialog>
+        </td>
+      </tr>
+      <tr>
+        <td class="tg-subheader">用户名</td>
+        <td class="" colspan="7">
+          <el-input></el-input>
+        </td>
+      </tr>
+    </table>
+    <el-button class="commit" type="primary" @click="commit">提交</el-button>
+  </div>
 </template>
 <script>
 export default {
@@ -607,6 +610,9 @@ export default {
 		handlePictureCardPreview(file) {
 			this.dialogImageUrl = file.url;
 			this.dialogVisible = true;
+		},
+		commit() {
+			console.log("commit");
 		}
 	}
 };
@@ -639,6 +645,9 @@ export default {
     word-break: normal;
   }
 }
+.commit {
+    margin-bottom: 20px;
+  }
 </style>
 
 

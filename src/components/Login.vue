@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { saveToLocal, loadFromLocal } from "@/common/localStore.js";
+// import { saveToLocal, loadFromLocal } from "@/common/localStore.js";
 
 export default {
 	name: "Login",
@@ -29,27 +29,25 @@ export default {
 	},
 	methods: {
 		login: function() {
-      if($('#user-name').val() === 'yiqi' && $('#password').val() === '123') {
-
-      }else {
-        alert('密码不正确，请重新输入');
-      }
-			// this.$store.commit("changeLogin", "1");
-      //登录后改变登录状态 isLogin = 1 ；
-      saveToLocal('1', 'isLogin', true);
+			if ($("#user-name").val() === "yiqi" && $("#password").val() === "123") {
+			} else {
+				alert("密码不正确，请重新输入");
+			}
+			//登录后改变登录状态 isLogin = 1 ；
+			window.localStorage.setItem("isLogin", 1);
+			window.localStorage.setItem("username", $("#user-name").val());
 		}
 	}
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="stylus">
 .wrapper {
   text-align: center;
 
   h1 {
     font-size: 50px;
-    margin-bottom: 100px;
+    margin: 120px auto;
   }
 
   .login-wrap {
