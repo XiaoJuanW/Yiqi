@@ -9,11 +9,10 @@
       </el-table-column>
       <el-table-column prop="deptPer" label="申请人">
       </el-table-column>
-      <el-table-column fixed="right" label="操作">
+      <el-table-column label="操作">
         <template slot-scope="scope">
           <router-link to="/appDetail">
             <el-button type="text" size="small">查看</el-button>
-            <!-- <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button> -->
           </router-link>
         </template>
       </el-table-column>
