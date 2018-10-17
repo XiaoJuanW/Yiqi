@@ -109,12 +109,7 @@ export default {
 				.then(({ value }) => {
 					this.changePassword(value, row);
 				})
-				.catch(() => {
-					this.$message({
-						type: "info",
-						message: "取消输入"
-					});
-				});
+				.catch(() => {});
 		},
 		// 更改密码
 		changePassword(newpsd, row) {
@@ -133,12 +128,7 @@ export default {
 				.then(() => {
 					this.deleteUser(index, rows);
 				})
-				.catch(() => {
-					this.$message({
-						type: "info",
-						message: "已取消删除"
-					});
-				});
+				.catch(() => {});
 		},
 		// 删除用户
 		deleteUser(index, rows) {
@@ -155,7 +145,7 @@ export default {
 		submitForm(formName) {
 			this.$refs[formName].validate(valid => {
 				if (valid) {
-					console.log('新建用户：' + this.form.name, this.form.pass);
+					console.log("新建用户：" + this.form.name, this.form.pass);
 				} else {
 					console.log("error submit!!");
 					return false;
